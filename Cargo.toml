@@ -1,0 +1,5 @@
+[workspace]
+
+members = [
+    "add_and_search_words",
+]

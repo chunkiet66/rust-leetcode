@@ -3,4 +3,5 @@
 members = [
     "add_and_search_words-211",
     "reverse-linked-list-206",
+    "valid-parentheses-20",
 ]

@@ -1,3 +1,41 @@
+#[cfg(test)]
+mod test {
+    use super::*;
+    #[test]
+    fn it_works() {
+        let a = ListNode::new(1);
+        let b = ListNode {
+            val: 2,
+            next: Some(Box::new(a)),
+        };
+        let c = ListNode {
+            val: 3,
+            next: Some(Box::new(b)),
+        };
+        let d = ListNode {
+            val: 4,
+            next: Some(Box::new(c)),
+        };
+        let e = ListNode {
+            val: 5,
+            next: Some(Box::new(d)),
+        };
+
+        let mut cur = Solution::reverse_list_recursive(Some(Box::new(e))).unwrap();
+        assert_eq!(cur.value(), 1);
+        cur = cur.next().unwrap();
+        assert_eq!(cur.val, 2);
+        cur = cur.next().unwrap();
+        assert_eq!(cur.val, 3);
+        cur = cur.next().unwrap();
+        assert_eq!(cur.val, 4);
+        cur = cur.next().unwrap();
+        assert_eq!(cur.val, 5);
+
+        assert_eq!(cur.next(), None);
+    }
+}
+
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
@@ -12,6 +50,14 @@ impl ListNode {
             next: None,
             val
         }
+    }
+
+    pub fn value(&self) -> i32 {
+        self.val
+    }
+
+    pub fn next(self) -> Option<Box<ListNode>> {
+        self.next
     }
 }
 

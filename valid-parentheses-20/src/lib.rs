@@ -18,20 +18,12 @@ impl Solution {
 
         //let bytes = s.as_bytes();
         for c in s.chars() {
-            if c == '(' {
-                stack.push(')');
-            } else if c == '{' {
-                stack.push('}');
-            } else if c == '[' {
-                stack.push(']');
-            } else {
-                match stack.pop() {
-                    Some(val) =>
-                        if val != c {
-                            return false;
-                        },
-                    None => return false,
-                }
+            match c {
+                '(' => stack.push(')'),
+                '{' => stack.push('}'),
+                '[' => stack.push(']'),
+                '}'|')'|']' => if Some(c) != stack.pop() { return false},
+                 _  => (),
             }
         }
 
